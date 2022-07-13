@@ -1,7 +1,10 @@
 package coverage
 
 import (
+	"fmt"
 	"os"
+	"testing"
+	"time"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -18,3 +21,58 @@ func init() {
 
 // WRITE YOUR CODE BELOW
 
+func TestPerson_Len(t *testing.T) {
+
+	tData:=People{
+		Person{"Adam", "Shou", time.Now()},
+		Person{"MArk", "Tsukerberg", time.Now()},
+		Person{},
+	}
+
+	tData_empty:=People{}
+
+	fmt.Printf("tData.Len(): %v\n", tData.Len())
+	
+	if tData.Len() != 3 {
+		t.Errorf("length is not correct. Expected values is 3")
+	}
+
+	fmt.Printf("tData_empty.Len(): %v\n", tData_empty.Len())
+	
+	if tData_empty.Len() != 0 {
+		t.Errorf("length is not correct. Expected values is 0")
+	}
+}
+
+
+func TestPerson_Less(t *testing.T) {
+
+	//t.Errorf("less")
+}
+
+func TestPerson_Swap(t *testing.T) {
+
+	//t.Errorf("swap")
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+func TestMatrix_New(t *testing.T){
+
+	//t.Errorf("new matrix")
+}
+
+func TestMatrix_Rows(t *testing.T){
+
+	//t.Errorf("rows")
+}
+
+func TestMatrix_Cols(t *testing.T){
+
+	//t.Errorf("cols")
+}
+
+func TestMatrix_Set(t *testing.T){
+
+	//t.Errorf("set")
+}
