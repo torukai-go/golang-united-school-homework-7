@@ -108,23 +108,94 @@ func TestPerson_Swap(t *testing.T) {
 
 func TestMatrix_New(t *testing.T){
 
-	_, err := New("1234\n 5678\n 9012\n 3456")
+	_, err := New("0")
 
 	if err!= nil{
+		t.Errorf("failed to create new matrix with 1 row and 1 column: Expected error to be nil")
+	}
+
+	_, err = New("01231241241244214214\n\n")
+
+	if err== nil{
+		t.Errorf("created invalid new matrix with empty row: Expected an error")
+	}
+
+	_, err = New("1234\n5678\n9012\n3456")
+
+	if err!= nil{
+		t.Errorf("failed to create new matrix with 4 rows and 4 columns: Expected error to be nil")
+	}
+
+	_, err = New("1234\n5678\n9012\n3456\n7890")
+
+	if err != nil{
+		t.Errorf("failed to create new matrix with 5 rows and 4 columns: Expected error to be nil")
+	}
+
+	_, err = New("1234\n5678\n9012\n3456\n7890")
+
+	if err != nil{
 		t.Errorf("failed to create new matrix: Expected error to be nil")
 	}
+
 
 	//t.Errorf("new matrix")
 }
 
 func TestMatrix_Rows(t *testing.T){
+//TODO: add more tests
+	tData, _ := New("1234\n5678\n9012\n3456")
 
-	//t.Errorf("rows")
+	a:= tData.Rows()
+	fmt.Printf("a: %v\n", a)
+
+	rowCount := len(tData.Rows())
+	if rowCount!=4 {
+		t.Errorf("Rows() returned incorrect count of rows: Expected 4")
+	}
+
+	if tData.Rows()[0][0] != 1234{
+		t.Errorf("Rows() returned incorrect value: Expected 1234")
+	}
+
+	if tData.Rows()[2][0] != 9012{
+		t.Errorf("Rows() returned incorrect value: Expected 1234")
+	}
+
+	tData, _ = New("0")
+
+	rowCount = len(tData.Rows())
+	if rowCount!=1 {
+		t.Errorf("Rows() returned incorrect count of rows: Expected 1")
+	}
 }
 
 func TestMatrix_Cols(t *testing.T){
 
-	//t.Errorf("cols")
+	tData, _ := New("1234\n5678\n9012\n3456")
+
+	a:= tData.Cols()
+	fmt.Printf("a: %v\n", a)
+
+	columnCount := len(tData.Cols())
+	if columnCount!=1 {
+		t.Errorf("Cols() returned incorrect count of rows: Expected 4")
+	}
+
+	if tData.Cols()[0][0] != 1234{
+		t.Errorf("Cols() returned incorrect value: Expected 1234")
+	}
+
+	if tData.Cols()[0][2] != 9012{
+		t.Errorf("Cols() returned incorrect value: Expected 1234")
+	}
+
+	tData, _ = New("0")
+
+	columnCount = len(tData.Cols())
+	if columnCount!=1 {
+		t.Errorf("Cols() returned incorrect count of Cols: Expected 1")
+	}
 }
 
 func TestMatrix_Set(t *testing.T){
