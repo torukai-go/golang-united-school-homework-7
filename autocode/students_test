@@ -47,12 +47,73 @@ func TestPerson_Len(t *testing.T) {
 
 func TestPerson_Less(t *testing.T) {
 
-	//t.Errorf("less")
+	tData:=People{
+		Person{"Adam", "Shou", time.Date(1965, 10, 1, 0, 0, 0, 0, time.UTC)},
+		Person{"Mark", "Tsukerberg", time.Date(2005, 10, 1, 0, 0, 0, 0, time.UTC)},
+		Person{},
+		Person{"Yasuo", "Sekiro", time.Date(1994, 12, 13, 0, 0, 0, 0, time.UTC)},
+		Person{"Yasuo", "Monro", time.Date(1994, 12, 13, 0, 0, 0, 0, time.UTC)},
+		Person{"Edward", "Shou", time.Date(1965, 10, 1, 0, 0, 0, 0, time.UTC)},
+	}
+
+	a:=tData.Less(0, 1)
+	fmt.Printf("a: %v\n", a)
+	if tData.Less(2, 1){
+
+		t.Errorf("birthday comparison: '1-10-2005' is less than '1-10-1965'. Expected FALSE")
+	}
+
+
+	a=tData.Less(2, 1)
+	fmt.Printf("a: %v\n", a)
+	if tData.Less(2, 1){
+
+		t.Errorf("birthday comparison: 'empty date' is less than '1-10-2005'. Expected FALSE")
+	}
+
+	a=tData.Less(3,4)
+	fmt.Printf("a: %v\n", a)
+
+	if tData.Less(3, 4){
+
+		t.Errorf("Surname comparison: 'Monro' is less than 'Sekiro'. Expected FALSE")
+	}
+
+	
+	a=tData.Less(5, 0)
+	fmt.Printf("a: %v\n", a)
+
+	if tData.Less(5, 0){
+
+		t.Errorf("First name comparison: 'Adam' is less than 'Edward'. Expected FALSE")
+	}
+
 }
 
 func TestPerson_Swap(t *testing.T) {
 
-	//t.Errorf("swap")
+	tData:=People{
+		Person{"Adam", "Shou", time.Date(1965, 10, 1, 0, 0, 0, 0, time.UTC)},
+		Person{"Mark", "Tsukerberg", time.Date(2005, 10, 1, 0, 0, 0, 0, time.UTC)},
+		Person{},
+		Person{"Yasuo", "Sekiro", time.Date(1994, 12, 13, 0, 0, 0, 0, time.UTC)},
+		Person{"Yasuo", "Monro", time.Date(1994, 12, 13, 0, 0, 0, 0, time.UTC)},
+		Person{"Edward", "Shou", time.Date(1965, 10, 1, 0, 0, 0, 0, time.UTC)},
+	}
+
+	tData.Swap(0, 1)
+
+	if tData[0].firstName != "Mark"{
+
+		t.Errorf("swap failed: Expected first name: \"Mark\" ")
+	}
+
+	tData.Swap(2, 3)
+	
+	if tData[3].firstName != ""{
+
+		t.Errorf("swap failed: Expected empty first name")
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
