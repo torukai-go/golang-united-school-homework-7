@@ -56,32 +56,20 @@ func TestPerson_Less(t *testing.T) {
 		Person{"Edward", "Shou", time.Date(1965, 10, 1, 0, 0, 0, 0, time.UTC)},
 	}
 
-	a:=tData.Less(0, 1)
-	fmt.Printf("a: %v\n", a)
 	if tData.Less(2, 1){
 
 		t.Errorf("birthday comparison: '1-10-2005' is less than '1-10-1965'. Expected FALSE")
 	}
 
-
-	a=tData.Less(2, 1)
-	fmt.Printf("a: %v\n", a)
 	if tData.Less(2, 1){
 
 		t.Errorf("birthday comparison: 'empty date' is less than '1-10-2005'. Expected FALSE")
 	}
 
-	a=tData.Less(3,4)
-	fmt.Printf("a: %v\n", a)
-
 	if tData.Less(3, 4){
 
 		t.Errorf("Surname comparison: 'Monro' is less than 'Sekiro'. Expected FALSE")
 	}
-
-	
-	a=tData.Less(5, 0)
-	fmt.Printf("a: %v\n", a)
 
 	if tData.Less(5, 0){
 
@@ -103,14 +91,14 @@ func TestPerson_Swap(t *testing.T) {
 
 	tData.Swap(0, 1)
 
-	if tData[0].firstName != "Mark" && tData[0].lastName != "Tsukerberg" && tData[0].birthDay != time.Date(2005, 10, 1, 0, 0, 0, 0, time.UTC){
+	if tData[0].firstName != "Mark"{
 
 		t.Errorf("swap failed: Expected first name: \"Mark\" ")
 	}
 
 	tData.Swap(2, 3)
 	
-	if tData[3].firstName != "" && tData[3].lastName != ""{
+	if tData[3].firstName != ""{
 
 		t.Errorf("swap failed: Expected empty first name")
 	}
@@ -119,6 +107,12 @@ func TestPerson_Swap(t *testing.T) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 func TestMatrix_New(t *testing.T){
+
+	_, err := New("1234\n 5678\n 9012\n 3456")
+
+	if err!= nil{
+		t.Errorf("failed to create new matrix: Expected error to be nil")
+	}
 
 	//t.Errorf("new matrix")
 }
