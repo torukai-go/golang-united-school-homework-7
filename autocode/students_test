@@ -137,9 +137,6 @@ func TestMatrix_New(t *testing.T){
 	if err != nil{
 		t.Errorf("failed to create new matrix: Expected error to be nil")
 	}
-
-
-	//t.Errorf("new matrix")
 }
 
 func TestMatrix_Rows(t *testing.T){
@@ -197,10 +194,20 @@ func TestMatrix_Set(t *testing.T){
 
 	tData, _ := New("1 2 3 4\n5 6 7 8\n9 0 1 2\n3 4 5 6")
 	
-	tData.Set(0,0,4321)
+	tData.Set(0,0,16)
 
-	if tData.data[0] != 4321{
-		t.Errorf("Invalid assignment of the element [0]. Expected 4321")
+	value:= tData.data[0]
+	fmt.Printf("c: %v\n", value)
+	if tData.data[0] != 16{
+		t.Errorf("Invalid assignment of the element: %v. Expected 16", value)
+	}
+
+	tData.Set(0,0, -301)
+
+	value = tData.data[0]
+	fmt.Printf("c: %v\n", value)
+	if tData.data[0] != -301{
+		t.Errorf("Invalid assignment of the element: %v. Expected -301", value)
 	}
 
 	if tData.Set(15,15, 2){
