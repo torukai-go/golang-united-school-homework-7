@@ -139,6 +139,14 @@ func TestMatrix_New(t *testing.T){
 	}
 }
 
+func TestMatrix_New_NotInt(t *testing.T) {
+	_, err := New("1 2 3 -43\n5 i 7 8\n9 y 1 -2\n3 4 я 62")
+
+	if err == nil {
+		t.Errorf("Created invalid matrix: Expected error")
+	}
+}
+
 func TestMatrix_Rows(t *testing.T){
 
 	tData, _ := New("1 2 3 -43\n5 -6 7 8\n9 0 1 -2\n3 4 5 62")
