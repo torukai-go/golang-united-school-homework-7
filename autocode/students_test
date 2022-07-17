@@ -213,5 +213,13 @@ func TestMatrix_Set(t *testing.T){
 	if tData.Set(15,15, 2){
 		t.Errorf("Invalid assignment of the element [2] to nonexistent row and column. Expected FALSE")
 	}
-	fmt.Printf("tData: %v\n", tData)
+
+	if tData.Set(-1, 0, 1) {
+		t.Errorf("Invalid setting element of matrix by neagtive row number: Expected FALSE")
+	}
+
+	if tData.Set(0, -1, 1){
+		t.Errorf("Invalid setting element of matrix by neagtive column number: Expected FALSE")
+	}
 }
+
